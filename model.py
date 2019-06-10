@@ -57,5 +57,6 @@ def get_model(is_train=False, keep_prob=0.8, alpha=0.8):
                                                    mean=utils.mu, stddev=utils.sigma))
         bias_7 = tf.Variable(tf.constant(0.1, shape=[utils.IMAGE_CLASSIFY]))
         result = tf.matmul(leaky_relu_6, filter_7) + bias_7
-
-        return tf_x, tf_y, tf_y_onehot, result
+        
+        last_layer = result if is_train else tf.nn.softmax(result)
+        return tf_x, tf_y, tf_y_onehot, last_layer
