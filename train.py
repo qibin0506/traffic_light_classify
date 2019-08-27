@@ -6,7 +6,7 @@ import images
 
 
 def get_loss(result, y):
-    cross_entropy = tf.nn.sigmoid_cross_entropy_with_logits(logits=result, labels=y)
+    cross_entropy = tf.nn.softmax_cross_entropy_with_logits(logits=result, labels=y)
     return tf.reduce_mean(cross_entropy)
 
 
